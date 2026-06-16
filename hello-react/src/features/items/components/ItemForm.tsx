@@ -6,6 +6,7 @@ import {
   TextField,
   Checkbox,
   FormControlLabel,
+  Switch,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
@@ -89,7 +90,7 @@ export function ItemForm({
 
           <FormControlLabel
             control={
-              <Checkbox
+              <Switch
                 {...register(
                   "validPermition"
                 )}
