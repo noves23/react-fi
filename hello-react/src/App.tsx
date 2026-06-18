@@ -11,6 +11,7 @@ import type { Item } from "./features/items/types";
 import { mockItems } from "./mocks/data";
 import { ItemCard } from "./features/items/components/ItemCard";
 import { ItemForm } from "./features/items/components/ItemForm";
+import { UploadDialog } from "./features/items/components/UploadDialog";
 
 export function ItemsPage() {
   const [items, setItems] =
@@ -57,6 +58,9 @@ export function ItemsPage() {
     setDialogOpen(false);
   };
 
+  const [uploadOpen, setUploadOpen] =
+    useState(false);
+
   return (
     <Container maxWidth="md">
       <Typography
@@ -100,6 +104,14 @@ export function ItemsPage() {
           }
         />
       </Dialog>
+
+      <UploadDialog
+        open={uploadOpen}
+        onClose={() =>
+          setUploadOpen(false)
+          }
+        />
+
     </Container>
   );
 }

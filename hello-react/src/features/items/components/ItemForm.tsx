@@ -8,7 +8,7 @@ import {
   FormControlLabel,
   Switch,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useEffect } from "react";
 
 import type { Item } from "../types";
@@ -28,6 +28,7 @@ export function ItemForm({
     register,
     handleSubmit,
     reset,
+    control,
   } = useForm<Item>();
 
   useEffect(() => {
@@ -90,13 +91,18 @@ export function ItemForm({
 
           <FormControlLabel
             control={
-              <Switch
-                {...register(
-                  "validPermition"
+              <Controller
+                name="validPermition"
+                control={control}
+                render={({ field }) => (
+                  <Switch
+                    {...field}
+                    checked={field.value}
+                  />
                 )}
               />
             }
-            label="Valid Permission"
+            label="Toggle"
           />
         </Stack>
       </DialogContent>

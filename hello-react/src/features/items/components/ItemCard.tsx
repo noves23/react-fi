@@ -10,16 +10,18 @@ import {
 
 import type { Item } from "../types";
 
-type Props = {
+interface Props {
   item: Item;
   onEdit: (item: Item) => void;
   onDelete: (id: string) => void;
-};
+  onUpload: () => void;
+}
 
 export function ItemCard({ 
   item, 
   onEdit, 
   onDelete, 
+  onUpload,
 }: Props) {
   const [expanded, setExpanded] = useState(false);
 
@@ -35,7 +37,6 @@ export function ItemCard({
             Title: {item.title}
           </Typography>
         <Collapse in={expanded}>
-
 
         </Collapse>
           <Typography>
@@ -64,7 +65,7 @@ export function ItemCard({
            <Stack
             direction="row"
             spacing={1}
-            mt={2}
+            sx={{ mt: 2 }}
           >
             <Button
               variant="outlined"
@@ -74,6 +75,14 @@ export function ItemCard({
             >
               Edit
             </Button>
+
+            <Button
+              variant="outlined"
+              onClick={onUpload}
+            >
+            Select Data
+            </Button>
+            
             <Button
               variant="contained"
               color="error"
