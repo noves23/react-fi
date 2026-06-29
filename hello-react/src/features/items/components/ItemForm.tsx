@@ -102,7 +102,7 @@ export function ItemForm({
                 )}
               />
             }
-            label="Toggle"
+            label="Valid Permission"
           />
         </Stack>
       </DialogContent>

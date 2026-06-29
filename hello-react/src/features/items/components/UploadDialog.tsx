@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Dialog,
   DialogTitle,
@@ -17,6 +17,7 @@ export function UploadDialog({
   open,
   onClose,
 }: UploadDialogProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] =
     useState<File | null>(null);
 
@@ -49,22 +50,25 @@ export function UploadDialog({
       </DialogTitle>
 
 <DialogContent>
+  <input
+    ref={fileInputRef}
+    type="file"
+    accept=".txt,.jpg,.png"
+    hidden
+    onChange={handleFileChange}
+  />
+
   <Button
     variant="outlined"
-    component="label"
+    onClick={() =>
+      fileInputRef.current?.click()
+    }
   >
     Choose File
-
-    <input
-      hidden
-      type="file"
-      accept=".txt,.jpg,.png"
-      onChange={handleFileChange}
-    />
   </Button>
 
   {selectedFile && (
-    <Typography sx={{ mt: 2 }}>
+    <Typography mt={2}>
       Selected: {selectedFile.name}
     </Typography>
   )}

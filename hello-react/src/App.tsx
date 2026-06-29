@@ -85,6 +85,9 @@ export function ItemsPage() {
             item={item}
             onEdit={handleEdit}
             onDelete={handleDelete}
+            onUpload={() =>
+              setUploadOpen(true)
+            }
           />
         ))}
       </Stack>
