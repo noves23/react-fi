@@ -1,17 +1,26 @@
 import { useState } from "react";
-import {
-  Button,
-  Container,
-  Dialog,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { AuthProvider, useAuth } from "./features/auth/context/AuthContext";
+import { LoginPage } from "./features/auth/pages/LoginPage";
+import { Button, Container, Dialog, Stack, Typography } from "@mui/material";
 
 import type { Item } from "./features/items/types";
 import { mockItems } from "./mocks/data";
 import { ItemCard } from "./features/items/components/ItemCard";
 import { ItemForm } from "./features/items/components/ItemForm";
 import { UploadDialog } from "./features/items/components/UploadDialog";
+
+function AppContent() {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? <ItemsPage /> : <LoginPage />;
+}
+
+export function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
 
 export function ItemsPage() {
   const [items, setItems] =
