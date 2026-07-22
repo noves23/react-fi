@@ -29,7 +29,16 @@ export function ItemForm({
     handleSubmit,
     reset,
     control,
-  } = useForm<Item>();
+  } = useForm<Item>({
+    defaultValues: {
+      brand: "",
+      title: "",
+      date: "",
+      mileage: 0,
+      color: "",
+      validPermition: false,
+    },
+  });
 
   useEffect(() => {
     if (item) {
